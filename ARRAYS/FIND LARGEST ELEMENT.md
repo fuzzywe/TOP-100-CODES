@@ -41,7 +41,133 @@ int main(){
 Output :
 89
 
- 
+ Let's go through a **dry run** of your code step by step. We’ll trace the function for the input array `{10, 89, 67, 56, 45, 78}` to understand how the recursion works.
+
+### Dry Run:
+
+1. **Driver Code:**
+   - **Line 12:**  
+     `int arr[] = {10, 89, 67, 56, 45, 78};`  
+     - Array `arr[]` is initialized with 6 elements.
+   
+   - **Line 13:**  
+     `int n = sizeof(arr) / sizeof(arr[0]);`  
+     - `sizeof(arr)` gives the total size of the array in bytes. In this case, `sizeof(arr)` is `6 * 4 = 24` bytes (assuming `int` is 4 bytes).
+     - `sizeof(arr[0])` gives the size of one element, which is 4 bytes.
+     - `n = 24 / 4 = 6`. Hence, `n = 6`.
+
+   - **Line 15:**  
+     `cout << getmax(arr, n);`  
+     - Calls the function `getmax(arr, 6)`. 
+
+---
+
+2. **Function Call: `getmax(arr, 6)`**
+   - **Line 5:**  
+     `if (n == 1) return arr[0];`  
+     - Since `n != 1` (n = 6), we proceed to the next line.
+   
+   - **Line 7:**  
+     `return max(arr[n-1], getmax(arr, n-1));`  
+     - `arr[n-1] = arr[5] = 78`. Now the function recursively calls `getmax(arr, 5)`.
+
+---
+
+3. **Function Call: `getmax(arr, 5)`**
+   - **Line 5:**  
+     `if (n == 1) return arr[0];`  
+     - Since `n != 1` (n = 5), we proceed to the next line.
+
+   - **Line 7:**  
+     `return max(arr[n-1], getmax(arr, n-1));`  
+     - `arr[n-1] = arr[4] = 45`. Now the function recursively calls `getmax(arr, 4)`.
+
+---
+
+4. **Function Call: `getmax(arr, 4)`**
+   - **Line 5:**  
+     `if (n == 1) return arr[0];`  
+     - Since `n != 1` (n = 4), we proceed to the next line.
+
+   - **Line 7:**  
+     `return max(arr[n-1], getmax(arr, n-1));`  
+     - `arr[n-1] = arr[3] = 56`. Now the function recursively calls `getmax(arr, 3)`.
+
+---
+
+5. **Function Call: `getmax(arr, 3)`**
+   - **Line 5:**  
+     `if (n == 1) return arr[0];`  
+     - Since `n != 1` (n = 3), we proceed to the next line.
+
+   - **Line 7:**  
+     `return max(arr[n-1], getmax(arr, n-1));`  
+     - `arr[n-1] = arr[2] = 67`. Now the function recursively calls `getmax(arr, 2)`.
+
+---
+
+6. **Function Call: `getmax(arr, 2)`**
+   - **Line 5:**  
+     `if (n == 1) return arr[0];`  
+     - Since `n != 1` (n = 2), we proceed to the next line.
+
+   - **Line 7:**  
+     `return max(arr[n-1], getmax(arr, n-1));`  
+     - `arr[n-1] = arr[1] = 89`. Now the function recursively calls `getmax(arr, 1)`.
+
+---
+
+7. **Function Call: `getmax(arr, 1)`**
+   - **Line 5:**  
+     `if (n == 1) return arr[0];`  
+     - Since `n == 1`, the function returns `arr[0] = 10`.
+
+---
+
+### Returning the Values (Unwinding the Recursion):
+
+Now that the base case is reached and the recursion starts to unwind, each step will compare values and return the maximum.
+
+8. **Back to `getmax(arr, 2)`**
+   - `max(arr[1], getmax(arr, 1))`  
+   - `max(89, 10)`  
+   - Returns `89`.
+
+9. **Back to `getmax(arr, 3)`**
+   - `max(arr[2], getmax(arr, 2))`  
+   - `max(67, 89)`  
+   - Returns `89`.
+
+10. **Back to `getmax(arr, 4)`**
+    - `max(arr[3], getmax(arr, 3))`  
+    - `max(56, 89)`  
+    - Returns `89`.
+
+11. **Back to `getmax(arr, 5)`**
+    - `max(arr[4], getmax(arr, 4))`  
+    - `max(45, 89)`  
+    - Returns `89`.
+
+12. **Back to `getmax(arr, 6)`**
+    - `max(arr[5], getmax(arr, 5))`  
+    - `max(78, 89)`  
+    - Returns `89`.
+
+### Final Output:
+- The maximum element in the array is `89`, and this value is printed by the `cout` statement in the `main()` function.
+
+---
+
+### Summary of Recursive Steps:
+
+- `getmax(arr, 1)` returns 10.
+- `getmax(arr, 2)` returns max(89, 10) = 89.
+- `getmax(arr, 3)` returns max(67, 89) = 89.
+- `getmax(arr, 4)` returns max(56, 89) = 89.
+- `getmax(arr, 5)` returns max(45, 89) = 89.
+- `getmax(arr, 6)` returns max(78, 89) = 89.
+
+Thus, the maximum element `89` is found using recursion.
 
 **
 Method 2 (Using Recursion):**
@@ -72,6 +198,11 @@ int main(){
 ```
 Output :
 89
+---
+
+
+
+
 ---
 **Method 3 (Using Recursion)**
 
