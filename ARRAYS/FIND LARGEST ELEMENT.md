@@ -1,6 +1,8 @@
 https://www.naukri.com/code360/problems/largest-element-in-the-array-largest-element-in-the-array_5026279?utm_source=striver&utm_medium=website&utm_campaign=codestudio_a_zcourse&leftPanelTabValue=PROBLEM
 
 
+https://www.geeksforgeeks.org/problems/largest-element-in-array4009/0?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=largest-element-in-array
+
 Here, we will discuss three different  methods to find the maximum element among the given elements of the array. Method discussed in this page are given below,
 
 Method 1: Simple iterative solution
