@@ -95,7 +95,7 @@ Pass final max value from last recursive callup to main and print
 ---
 Method 3 : Code in C++
 
-```
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 
