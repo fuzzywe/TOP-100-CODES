@@ -1,4 +1,158 @@
+https://www.geeksforgeeks.org/problems/largest-element-in-array4009/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+
+
 Find the Greatest of the Two Numbers in C++
+Iterative Approach – O(n) Time and O(1) Space
+The approach to solve this problem is to traverse the whole array and find the maximum among them.
+
+
+
+
+```cpp
+#include <iostream>
+
+#include <vector>
+
+using namespace std;
+
+​
+
+int largest(vector<int>& arr) {
+
+    int max = arr[0];
+
+​
+
+    //Traverse  from second and compare
+
+    // every element with current max
+
+    for (int i = 1; i < arr.size(); i++)
+
+        if (arr[i] > max)
+
+            max = arr[i];
+
+​
+
+    return max;
+
+}
+
+​
+
+int main() {
+
+    vector<int> arr = {10, 324, 45, 90, 9808};
+
+    cout << largest(arr);
+
+    return 0;
+
+}
+```
+Output
+9808
+Recursive Approach – O(n) Time and O(n) Space
+The idea is similar to the iterative approach. Here the traversal of the array is done recursively instead of an iterative loop. 
+
+
+---
+
+```cpp
+#include <iostream>
+
+#include <vector>
+
+using namespace std;
+
+​
+
+int findMax(vector<int>& arr, int i) {
+
+  
+
+   // Last index returns the element
+
+    if (i == arr.size() - 1) {
+
+        return arr[i];
+
+    }
+
+​
+
+    // Find the maximum from the rest of the vector
+
+    int recMax = findMax(arr, i + 1);
+
+​
+
+    // Compare with i-th element and return
+
+    return max(recMax, arr[i]);
+
+}
+
+​
+
+int largest(vector<int>& arr) {
+
+  return findMax(arr,0);
+
+}
+
+​
+
+int main() {
+
+    vector<int> arr = {10, 324, 45, 90, 9808};
+
+    cout << largest(arr);
+
+    return 0;
+
+}
+```
+Output
+9808
+Using Library Methods – O(n) Time and O(1) Space
+Most of the languages have a relevant max() type in-built function to find the maximum element, such as  std::max_element in C++. We can use this function to directly find the maximum element.  
+
+
+---
+
+```cpp
+#include <iostream>
+
+#include <vector>
+
+#include <algorithm>
+
+using namespace std;
+
+​
+
+int largest(vector<int>& arr) {
+
+    return *max_element(arr.begin(), arr.end());
+
+}
+
+​
+
+int main() {
+
+    vector<int> arr = {10, 324, 45, 90, 9808};
+
+    cout << largest(arr);
+
+    return 0;
+
+}
+```
+Output
+9808
 Find the Greatest of the Two Numbers in C++
 Given two integers as input, the objective is to check both numbers for the greatest and write a code to find the greatest of the two numbers in C++.
 
