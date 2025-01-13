@@ -4,6 +4,121 @@ Find the Sum of N Natural Numbers in C++
 https://www.geeksforgeeks.org/problems/stuti-and-her-problem5846/0
 
 
+This problem involves finding the largest number `k` such that the sum of the first `k` natural numbers is exactly equal to a given `N`. If no such `k` exists, return `-1`. The sum of the first `k` natural numbers is given by:
+
+\[
+S_k = \frac{k \times (k + 1)}{2}
+\]
+
+We need to check if there exists a `k` such that \( S_k = N \). Below are **brute-force**, **better**, and **optimal** approaches in C++.
+
+---
+
+### **Brute Force Solution**
+- Iterate from `k = 1` to `N`, compute the sum of the first `k` numbers, and check if it matches `N`.
+
+#### **Implementation**
+```cpp
+#include <iostream>
+using namespace std;
+
+int findLargestKBruteForce(int N) {
+    int sum = 0;
+    for (int k = 1; k <= N; k++) {
+        sum += k;
+        if (sum == N) return k;
+    }
+    return -1;
+}
+
+int main() {
+    int N1 = 10;
+    int N2 = 17;
+    cout << findLargestKBruteForce(N1) << endl;  // Output: 4
+    cout << findLargestKBruteForce(N2) << endl;  // Output: -1
+    return 0;
+}
+```
+
+---
+
+### **Better Solution**
+- Compute sums iteratively, stopping if the sum exceeds `N`.
+
+#### **Implementation**
+```cpp
+#include <iostream>
+using namespace std;
+
+int findLargestKBetter(int N) {
+    int sum = 0, k = 0;
+    while (sum < N) {
+        k++;
+        sum += k;
+        if (sum == N) return k;
+    }
+    return -1;
+}
+
+int main() {
+    int N1 = 10;
+    int N2 = 17;
+    cout << findLargestKBetter(N1) << endl;  // Output: 4
+    cout << findLargestKBetter(N2) << endl;  // Output: -1
+    return 0;
+}
+```
+
+---
+
+### **Optimal Solution (Mathematical)**
+- Use the formula for the sum of the first `k` natural numbers:  
+  \[
+  k \times (k + 1) / 2 = N
+  \]
+- Solve the quadratic equation:
+  \[
+  k^2 + k - 2N = 0
+  \]
+- Calculate the discriminant, ensuring it is a perfect square, and check if `k` is a positive integer.
+
+#### **Implementation**
+```cpp
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int findLargestKOptimal(int N) {
+    double discriminant = 1 + 8 * N;  // From k^2 + k - 2N = 0
+    double sqrtVal = sqrt(discriminant);
+    
+    if (sqrtVal == (int)sqrtVal) {  // Check if sqrtVal is a perfect square
+        int k = (-1 + (int)sqrtVal) / 2;
+        if (k * (k + 1) / 2 == N) return k;
+    }
+    return -1;
+}
+
+int main() {
+    int N1 = 10;
+    int N2 = 17;
+    cout << findLargestKOptimal(N1) << endl;  // Output: 4
+    cout << findLargestKOptimal(N2) << endl;  // Output: -1
+    return 0;
+}
+```
+
+---
+
+### **Complexities**
+| **Approach**     | **Time Complexity** | **Space Complexity** |
+|------------------|--------------------|----------------------|
+| **Brute Force**  | O(N)               | O(1)                 |
+| **Better**       | O(sqrt(N))         | O(1)                 |
+| **Optimal**      | O(1)               | O(1)                 |
+
+The optimal solution uses the quadratic formula for direct computation, making it the most efficient.
+
 Given an integer input the objective is to write a code to Find the Sum of N Natural Numbers in C++. To do so we simply keep adding the value of the iter variable using a for loop.
 
 
