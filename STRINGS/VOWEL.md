@@ -5,6 +5,8 @@ Here, in this section, we will discuss the program to check whether the Characte
 
 While loop in C
 Working:-
+
+
 Accept character input from the user
 Check if the character is any of the vowels in both Lower and Upper case
 If yes the print Vowel else print Consonant
